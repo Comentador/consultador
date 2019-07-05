@@ -1,10 +1,9 @@
 <?php
+$file = "id.txt";
+$buscar = file_get_contents($file);
+$adicionar = "583723\n";
+file_put_contents($file, $adicionar);
 
-$abertura = fopen("arquivo.txt", "W+");
-$conteudo = "Eu criei o arquivo com sucesso";
-$escrever = fwrite($conteudo, $abertura);
-fclose($abertura);
-
-echo "Arquivo criado com sucesso";
+echo file_get_contents("id.txt");
 
 <?
