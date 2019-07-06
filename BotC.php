@@ -45,7 +45,7 @@ class Divulga{
 		$parametro = array(
 			"chat_id"=>$opc["chat_id"],
 			"text"=>$msg,
-			"message_id"=>$opc["message_id"],
+			"message_id"=>$_SESSION["message"],
 		);
 
 		$this->apiRequest("editMessageText", $parametro);
