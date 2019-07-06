@@ -27,7 +27,7 @@
         $motor->editMessage($opc, "Se voce ainda estiver ai consegue ver a minha outra mensagem");
     }
     else if($opc["texto"] === "/tool"){
-        $motor->sendInline($opc, "Testando o callback", $strings->falas["botoes"]);
+        $motor->sendInline($opc, "Testando o callback", $strings->fala["botoes"]);
     }
 
 ?>
