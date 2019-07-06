@@ -15,7 +15,7 @@
 
     $opc["chat_id"]=$mensagem["chat"]["id"];
     $opc["texto"]=$mensagem["text"];
-    $opc["message_id"]=$mensagem["message_id"];
+    $opc["message_id"]=$mensagem["message_id"]+1;
     $_SESSION['message']=$opc["message_id"];
     $motor = new Divulga();
     $strings = new Strings();
@@ -31,7 +31,6 @@
     }
     else if($opc["texto"] === "/tool"){
         $motor->sendInline($opc, "Testando o callback", $strings->fala["botoes"]);
-        $motor->sendMessage($opc, $opc["message_id"]);
     }
 
 ?>
