@@ -1,8 +1,5 @@
 <?php
-    if(session_id() == ""){
-        session_start();
-    }
-
+ 
     require "BotC.php";
 
     define("BOT_TOKEN", "876737706:AAEaTouyw83yoHNP7s0gfmcRvx2b-vI9YbA");
@@ -17,15 +14,17 @@
     $opc["chat_id"]=$mensagem["chat"]["id"];
     $opc["texto"]=$mensagem["text"];
     $opc["message_id"]=$mensagem["message_id"]+1;
-    $_SESSION['message'] = $opc["message_id"];
-
     $motor = new Divulga();
+    
+    if(isset($update["callback_query"])){
+        $motor->callback($opc ,$update["callback_query"]);
+    }
 
     if($opc['texto'] === "/start"){
-        $motor->sendMessage($opc, "Ola esta 'e a minha primeira mensagem");
+        $motor->sendMessage($opc, "Ola esta é a minha primeira mensagem");
         sleep(2);
         $motor->editMessage($opc, "Se voce ainda estiver ai consegue ver a minha outra mensagem");
     }
 
 ?>
-    
+
