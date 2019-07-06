@@ -77,7 +77,7 @@ class Divulga{
 		}
 		else if($cb_data == "pode"){
 			$text = "Seja bem vindo";
-			$this->answerCallbackQuery($cb_id, true, 3, $text);
+			$this->answerCallbackQuery($cb_id, false, 3, $text);
 		}
 	}
 
