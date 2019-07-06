@@ -15,6 +15,7 @@
     $opc["texto"]=$mensagem["text"];
     $opc["message_id"]=$mensagem["message_id"]+1;
     $motor = new Divulga();
+    $strings = new Strings();
     
     if(isset($update["callback_query"])){
         $motor->callback($opc ,$update["callback_query"]);
@@ -24,6 +25,9 @@
         $motor->sendMessage($opc, "Ola esta é a minha primeira mensagem");
         sleep(2);
         $motor->editMessage($opc, "Se voce ainda estiver ai consegue ver a minha outra mensagem");
+    }
+    else if($opc["texto"] === "/tool"){
+        $motor->sendInline($opc, "Testando o callback", $strings->falas["botoes"]);
     }
 
 ?>
