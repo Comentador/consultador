@@ -45,11 +45,40 @@ class Divulga{
 		$parametro = array(
 			"chat_id"=>$opc["chat_id"],
 			"text"=>$msg,
-			"message_id"=>$_SESSION['message'],
+			"message_id"=>$opc["message_id"],
 		);
 
 		$this->apiRequest("editMessageText", $parametro);
 
+	}
+
+	protected function answerCallbackQuery($callback_id, $alert, $time, $text){
+		$parametro = array(
+			"callback_query_id"=>$callback_id,
+			"show_alert"=>$alert,
+			"cache_time"=>$time,
+			"text"=>$text,
+		);
+
+		$this->apiRequest("answerCallbackQuery", $parametro);
+	}
+
+	public function callback($opc ,$callback){
+		$cb_chat_id = $callback["message"]["chat"]["id"];
+		$cb_message_id = $callback["message"]["id"];
+		$cb_id = $callback["id"];
+		$cb_data = $callback["data"];
+
+
+		if($cb_data == "avisei"){
+			$text = null;
+			$this->answerCallbackQuery($cb_id, false, 3, $text);
+			$this->editMessage($opc, "Mudei o inline");
+		}
+		else if($cb_data == "pode"){
+			$text = "Seja bem vindo";
+			$this->answerCallbackQuery($cb_id, true, 3, $text);
+		}
 	}
 
 }
@@ -59,5 +88,10 @@ class Strings{
 
 	public $fala = array(
 		"primeira"=>"opa fion",
+		"botoes"=>array(
+			"inline_keyboard"=>array(
+				array(array("text"=>"testando", "callback_data"=>"avisei"), array("text"=>"ainda", "callback_data"=>"pode")),
+			)
+		),
 	);
 }
