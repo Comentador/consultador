@@ -1,5 +1,7 @@
 <?php
- 
+   if(session_id() == ""){
+       session_start();
+   }
     require "BotC.php";
 
     define("BOT_TOKEN", "876737706:AAEaTouyw83yoHNP7s0gfmcRvx2b-vI9YbA");
@@ -13,7 +15,8 @@
 
     $opc["chat_id"]=$mensagem["chat"]["id"];
     $opc["texto"]=$mensagem["text"];
-    $opc["message_id"]=$mensagem["message_id"]+2;
+    $opc["message_id"]=$mensagem["message_id"];
+    $_SESSION['message']=$opc["message_id"];
     $motor = new Divulga();
     $strings = new Strings();
     
