@@ -81,6 +81,19 @@ class Divulga{
 		}
 	}
 
+	public function SendInline($opc, $msg, $button){
+		$encode = json_encode($button, true);
+
+		$parametro = array(
+			"chat_id"=>$opc["chat_id"],
+			"text"=>$msg,
+			"reply_markup"=>$encode,
+			"parse_mode"=>"Markdown",
+		);
+
+		$this->apiRequest("sendMessage", $parametro);
+	}
+
 }
 
 
