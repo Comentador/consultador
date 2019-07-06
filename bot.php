@@ -16,7 +16,11 @@
     $opc["chat_id"]=$mensagem["chat"]["id"];
     $opc["texto"]=$mensagem["text"];
     $opc["message_id"]=$mensagem["message_id"]-2;
-    $_SESSION['message']=$opc["message_id"];
+    if($opc["message_id"] == 0 or ""){
+        $_SESSION["message"] = "opa erro da api do telegram amigo";
+    }else{
+        $_SESSION['message']=$opc["message_id"];   
+    }
     $motor = new Divulga();
     $strings = new Strings();
     
