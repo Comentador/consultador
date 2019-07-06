@@ -78,6 +78,7 @@ class Divulga{
 		else if($cb_data == "pode"){
 			$text = "Seja bem vindo";
 			$this->answerCallbackQuery($cb_id, false, 3, $text);
+			$this->sendMessage($opc, $_SESSION['message']);
 		}
 	}
 
