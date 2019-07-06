@@ -13,7 +13,7 @@
 
     $opc["chat_id"]=$mensagem["chat"]["id"];
     $opc["texto"]=$mensagem["text"];
-    $opc["message_id"]=$mensagem["message_id"];
+    $opc["message_id"]=$mensagem["message_id"]+2;
     $motor = new Divulga();
     $strings = new Strings();
     
