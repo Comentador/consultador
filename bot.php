@@ -1,7 +1,8 @@
 <?php
-   if(session_id() == ""){
-       session_start();
-   }
+    if(session_id() == ""){
+        session_start();
+    }
+
     require "BotC.php";
 
     define("BOT_TOKEN", "876737706:AAEaTouyw83yoHNP7s0gfmcRvx2b-vI9YbA");
@@ -12,15 +13,16 @@
     $update = json_decode($conteudo, true);
     $mensagem = $update["message"];
     $opc;
-
     $opc["chat_id"]=$mensagem["chat"]["id"];
     $opc["texto"]=$mensagem["text"];
-    $opc["message_id"]=$mensagem["message_id"]-2;
-    if($opc["message_id"] == 0 or ""){
-        $_SESSION["message"] = "opa erro da api do telegram amigo";
-    }else{
-        $_SESSION['message']=$opc["message_id"];   
-    }
+    $opc["message_id"]=$mensagem["message_id"];
+    $opc["user_id"]= $mensagem["from"]["id"];
+    $opc["first_name"]=$mensagem["from"]["first_name"];
+    $opc["last_name"] = $mensagem["from"]["last_name"];
+    $opc["user"] = $mensagem["from"]["username"];
+    $opc["user_lang"]=$mensagem["from"]["language_code"];
+    $opc["chat_type"] = $mensagem["chat"]["type"];
+
     $motor = new Divulga();
     $strings = new Strings();
     
@@ -29,12 +31,12 @@
     }
 
     if($opc['texto'] === "/start"){
-        $motor->sendMessage($opc, "Ola esta é a minha primeira mensagem");
-        sleep(2);
-        $motor->editMessage($opc, "Se voce ainda estiver ai consegue ver a minha outra mensagem");
+        $motor->sendMessage($opc, $opc['first_name']);
+        
     }
     else if($opc["texto"] === "/tool"){
         $motor->sendInline($opc, "Testando o callback", $strings->fala["botoes"]);
+        $motor->sendMessage($opc, $opc["message_id"]);
     }
 
 ?>
