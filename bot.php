@@ -31,12 +31,12 @@
     }
 
     if($opc['texto'] === "/start"){
-        $motor->sendMessage($opc, $opc['first_name']);
+        $motor->sendMessage($opc, $opc['user']);
         
     }
     else if($opc["texto"] === "/tool"){
-        $motor->sendInline($opc, "Testando o callback", $strings->fala["botoes"]);
-        $motor->sendMessage($opc, $opc["message_id"]);
+        $motor->sendChatAction($opc, "typing");
+        $motor->foreca($opc);
     }
 
 ?>
